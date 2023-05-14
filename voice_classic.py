@@ -119,6 +119,7 @@ def main(train_p: str, test_p: str) -> None:
     n_components_vals = range(10, 41, 5)  # number of components in GaussianMixture model
 
     # get different classifiers accuracies
+    print("\nClassifying recordings...")
     accuracies = {(mfcc, comp): get_accuracy(train_files, test_files, n_mfcc=mfcc, n_components=comp)
                   for mfcc in tqdm(mfcc_vals)
                   for comp in tqdm(n_components_vals, leave=False)}
@@ -130,6 +131,9 @@ def main(train_p: str, test_p: str) -> None:
         .pivot(index='n_mfcc',
                columns='n_components',
                values='value')
+
+    print("\n____ Accuracy ____")
+    print(df)
 
     # creating custom colormap
     my_cmap = se.diverging_palette(240, 10,
@@ -146,9 +150,12 @@ def main(train_p: str, test_p: str) -> None:
     acc_heatmap.set_ylabel("Number of MFCC's")
 
     # saving plot to the device
-    #plt.savefig('accuracies.png', dpi=300, bbox_inches='tight')
+    plt.savefig('accuracies.png', dpi=300, bbox_inches='tight')
+
+    print("\nPlot saved!")
 
     # showing plot
+    print("\nShowing plot...")
     plt.show()
 
 
@@ -161,12 +168,12 @@ if __name__ == "__main__":
     parser.add_argument("--train_folder_path",
                         type=str,
                         help="Path to a folder with recordings to train on",
-                        default="/voices/train")
+                        default="./voices/train")
 
     parser.add_argument("--test_folder_path",
                         type=str,
                         help="Path to a folder with recordings to test on",
-                        default="/voices/test")
+                        default="./voices/test")
 
     args = parser.parse_args()
 
