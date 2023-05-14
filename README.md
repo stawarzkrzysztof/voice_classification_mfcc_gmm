@@ -1,8 +1,11 @@
 # Voice Classification using MFCC and Gaussian Mixture Models  
   
 ## About
-This is one of my first self-made project. The script trains on `.wav` recordings and then classifies them. 
+This is one of my first self-made project. The script trains on `.wav` recordings and then classifies them, then repeats it with different number of MFCC's (`n_mfcc`) and Gaussian Mixture components (`n_components`) to see how these two parameters influence the results. 
   
+## Goal
+My goal there was to use my basic knowledge of Machine Learning I obtained this year and implement it. I was curious if classifying the sound would be as easy and trivial as classifying images. It turns out... it is much easier!
+
 ## External Packages  
 The following packages are required for script to work:
 ```text
@@ -49,8 +52,17 @@ n_mfcc
 35            0.222222  0.111111  0.111111  0.111111  0.888889  0.888889  0.888889
 40            0.666667  0.777778  0.777778  0.888889  0.888889  0.888889  0.888889
 ```
-I also allowed myself to visualize the output with `seaborn.heatmap()`:
-![Heatmap of accuacy](/Users/stawager/Repozytoria/Portfolio/voice_classification_mfcc_gmm/readme_imgs/accuracies.png)
+I also allowed myself to visualize the output with `seaborn.heatmap()`:  
+
+![Heatmap of accuacy](readme_imgs/accuracies.png)
+
+If you are curious, how the code works, I tried to explain and document everything in code comments.  
+Stay connected with me, follow me here on [GitHub](https://github.com/stawarzkrzysztof), [LinkedIn](https://www.linkedin.com/in/stawarzkrzysztof/), [Twitter](https://twitter.com/stawarz_k) and [Kaggle](https://www.kaggle.com/stawarzkrzysztof)!
+
+## Explore 
+- [MFCC](http://practicalcryptography.com/miscellaneous/machine-learning/guide-mel-frequency-cepstral-coefficients-mfccs/)
+- [Gaussian Mixture Models](https://scikit-learn.org/stable/modules/mixture.html)
+
 ## Idea credits
-- dr inż. Tomasz Kryjak
-- mgr. inż. Hubert Szolc
+- [dr inż. Tomasz Kryjak](https://www.linkedin.com/in/tomasz-kryjak-784184174/?originalSubdomain=pl)
+- [mgr. inż. Hubert Szolc](https://www.linkedin.com/in/hubert-szolc/)
