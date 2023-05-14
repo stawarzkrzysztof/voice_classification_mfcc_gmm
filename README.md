@@ -50,7 +50,7 @@ n_mfcc
 40            0.666667  0.777778  0.777778  0.888889  0.888889  0.888889  0.888889
 ```
 I also allowed myself to visualize the output with `seaborn.heatmap()`:
-![Heatmap of accuacy](/Users/stawager/Repozytoria/Portfolio/voice_classification_mfcc_gmm/readme_imgs/accuracies.png)
+![Heatmap of accuacy](readme_imgs/accuracies.png?raw=true)
 ## Idea credits
 - dr inż. Tomasz Kryjak
 - mgr. inż. Hubert Szolc
