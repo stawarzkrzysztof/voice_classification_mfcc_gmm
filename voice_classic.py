@@ -10,6 +10,8 @@ import os
 import librosa
 from sklearn.mixture import GaussianMixture
 from typing import List
+import argparse
+from tqdm import tqdm
 
 # visualization tools
 import pandas as pd
@@ -118,8 +120,8 @@ def main(train_p: str, test_p: str) -> None:
 
     # get different classifiers accuracies
     accuracies = {(mfcc, comp): get_accuracy(train_files, test_files, n_mfcc=mfcc, n_components=comp)
-                  for mfcc in mfcc_vals
-                  for comp in n_components_vals}
+                  for mfcc in tqdm(mfcc_vals)
+                  for comp in tqdm(n_components_vals, leave=False)}
 
     # create DataFrame to visualize data
     rows, columns, values = zip(*[(k[0], k[1], v) for k, v in accuracies.items()])
@@ -144,7 +146,7 @@ def main(train_p: str, test_p: str) -> None:
     acc_heatmap.set_ylabel("Number of MFCC's")
 
     # saving plot to the device
-    plt.savefig('accuracies.png', dpi=300, bbox_inches='tight')
+    #plt.savefig('accuracies.png', dpi=300, bbox_inches='tight')
 
     # showing plot
     plt.show()
@@ -152,9 +154,21 @@ def main(train_p: str, test_p: str) -> None:
 
 if __name__ == "__main__":
 
-    #  insert your path to a downloaded folder with files
-    test_path = "./voices/test"
-    train_path = "./voices/train"
+    # creating command line argument parser
+    parser = argparse.ArgumentParser(
+        description="Give me recording of your voice and I'll tell you who you are...")
 
-    main(train_path, test_path)
+    parser.add_argument("--train_folder_path",
+                        type=str,
+                        help="Path to a folder with recordings to train on",
+                        default="/voices/train")
+
+    parser.add_argument("--test_folder_path",
+                        type=str,
+                        help="Path to a folder with recordings to test on",
+                        default="/voices/test")
+
+    args = parser.parse_args()
+
+    main(args.train_folder_path, args.test_folder_path)
     quit()
